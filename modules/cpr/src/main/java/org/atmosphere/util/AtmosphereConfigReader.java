@@ -29,6 +29,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileNotFoundException;
@@ -53,6 +54,7 @@ public class AtmosphereConfigReader {
     public AtmosphereConfig parse(AtmosphereConfig config, String filename) throws FileNotFoundException {
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
         try {
             return parse(config, factory.newDocumentBuilder().parse(filename));
         } catch (SAXException e) {
@@ -71,6 +73,7 @@ public class AtmosphereConfigReader {
     public AtmosphereConfig parse(AtmosphereConfig config, InputStream stream) throws FileNotFoundException {
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
         try {
             return parse(config, factory.newDocumentBuilder().parse(stream));
         } catch (SAXException e) {
